@@ -86,7 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="学做小程序-学习笔记"><a href="#学做小程序-学习笔记" class="headerlink" title="学做小程序 学习笔记"></a>学做小程序 学习笔记</h1><p>B站清华大学-学做小程序（基础+实战）  BV1M7411w7ez</p>
+        <p><strong>学做小程序 学习笔记  B站清华大学-学做小程序（基础+实战）  BV1M7411w7ez</strong></p>
 <img src="E:\qqAF572E9BA36DEA9B683B8E9E1A22EC92\02181376b5ac429793f3e0a7196859a9\clipboard.png" alt="img" style="zoom:50%;" />
 
 <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>web里的元素在wxml里叫做组件,在wxml中通过框架提供的基础组件来表达内容元素,元素=组件 </p>
@@ -133,6 +133,80 @@
 
 <p><img src="E:%5CqqAF572E9BA36DEA9B683B8E9E1A22EC92%5Cda885a76642f4384b8f64eb4239d6862%5Cclipboard.png" alt="img"></p>
 <p>// 把某个样式应用到全局，就应该在app.wxml 里写全局样式</p>
+<h2 id="使用navigator组件"><a href="#使用navigator组件" class="headerlink" title="使用navigator组件"></a>使用navigator组件</h2><ul>
+<li>使用navigator组件 实现从首页到其他页面的跳转  超链接 </li>
+<li>文本内 的 某一部分是 链接，需要分拆，并 设置 navigator 为 inline</li>
+<li>open-type属性，设置跳转后是否能返回，默认为可返回  open-type:”navigate”；重定向（不可返回open-type:”redirect”</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">例：仅仅给每周推荐设置navigator</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">   1. <span class="tag">&lt;<span class="name">text</span>&gt;</span>我<span class="tag">&lt;/<span class="name">text</span>&gt;</span> </span><br><span class="line">   2. <span class="tag">&lt;<span class="name">navigator</span> <span class="attr">style</span>=<span class="string">"display:inline;"</span> <span class="attr">url</span>=<span class="string">"/pages/weekly/weekly"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">open-type</span>=<span class="string">"redirect"</span>&gt;</span>每周推荐<span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br><span class="line">   3. <span class="tag">&lt;<span class="name">text</span>&gt;</span>一部好片<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">例：当链接被点击按住时，“每周推荐”颜色变红</span><br><span class="line">&lt;navigator hover-class:"nav-hover"&gt;每周推荐&lt;/navigator&gt;</span><br><span class="line"><span class="selector-class">.nav-hover</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置tabBar"><a href="#配置tabBar" class="headerlink" title="配置tabBar"></a>配置tabBar</h2><p>配置tabBar-对若干一级页面的入口链接，（底部标签栏</p>
+<p>全局配置app.json:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">"tabBar":&#123;</span><br><span class="line">    "color": "#000", //文本颜色</span><br><span class="line">    "selectedColor" : "#00f",  //被选择后文本颜色</span><br><span class="line">    "list":[</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"text"</span>:<span class="string">"每周推荐"</span>,</span><br><span class="line">        <span class="attr">"pagePath"</span>: <span class="string">"pages/weekly/weekly"</span>, <span class="comment">//路径不要以/开头</span></span><br><span class="line">        <span class="attr">"iconPath"</span>: <span class="string">"images/icons/weekly.jpg"</span>,</span><br><span class="line">        <span class="attr">"selectedIconPath"</span>: <span class="string">"images/icons/weekly-selected.jpg"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"text"</span>:<span class="string">"关于"</span>,</span><br><span class="line">        <span class="attr">"pagePath"</span>: <span class="string">"pages/index/index"</span>,</span><br><span class="line">        <span class="attr">"iconPath"</span>: <span class="string">"images/icons/index.png"</span>,</span><br><span class="line">        <span class="attr">"selectedIconPath"</span>: <span class="string">"images/icons/index-selected.png"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+
+<p><img src="E:%5CqqAF572E9BA36DEA9B683B8E9E1A22EC92%5C4db518192f134b8990727f05bcca1d08%5Cclipboard.png" alt="img"></p>
+<p>新问题引入：原来首页的<navigator>元素点击无效    -&gt;解决方法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">navigator</span> <span class="attr">open-type</span>=<span class="string">"switchTab"</span> &gt;</span> 每周推荐<span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置全局的顶部导航栏样式"><a href="#配置全局的顶部导航栏样式" class="headerlink" title="配置全局的顶部导航栏样式"></a>配置全局的顶部导航栏样式</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">在app.json中配置window</span><br><span class="line"> "window": &#123;</span><br><span class="line">    "backgroundTextStyle": "light", //字体</span><br><span class="line">    "navigationBarBackgroundColor": "#fff",  //背景色</span><br><span class="line">    "navigationBarTextStyle": "black"，  // 黑字</span><br><span class="line">    "navigationBarTitleText": "wechat" //默认标题</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><p>一种机制让视图中的每一个部分与对应的数据做一个映射</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">weekly.js :</span><br><span class="line">Page(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">    thisWeekMovie:&#123;</span><br><span class="line">      name:<span class="string">"教父"</span>,</span><br><span class="line">      comment:<span class="string">"最精彩的剧本，最真实的黑帮电影"</span>,</span><br><span class="line">      imagePath:<span class="string">"/images/img001.jpg"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    count: <span class="number">123</span>,</span><br><span class="line">    score: <span class="number">61</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">weekly.wxml:</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span>&gt;</span>本周推荐<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;thisWeekMovie.imagePath&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123;thisWeekMovie.name&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123;thisWeekMovie.comment&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123;score&gt;=60?"及格":"不及格"&#125;&#125; <span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在AppData栏中，查看、修改内部状态变量</p>
+<p><img src="E:%5CqqAF572E9BA36DEA9B683B8E9E1A22EC92%5Ccc176b85b37b47a5bc073e5f38308fce%5Cclipboard.png" alt="img"></p>
+<h2 id="小程序运行环境和基本架构"><a href="#小程序运行环境和基本架构" class="headerlink" title="小程序运行环境和基本架构"></a>小程序<strong>运行环境和基本架构</strong></h2><p><img src="E:%5CqqAF572E9BA36DEA9B683B8E9E1A22EC92%5Cb273d48c1a83478a911b1d1fe5a5f94d%5Cdbd6f4947c17bfa7984bbc6dfb4a5e34.png" alt="img"></p>
+<p>比如访问本机照片、视频、获取地理位置信息等</p>
+<ul>
+<li><p>视图层和逻辑层</p>
+</li>
+<li><ul>
+<li><p>各自的描述语言: 渲染层wxml wxss , 逻辑层js</p>
+</li>
+<li><p>各自的运行程序</p>
+</li>
+<li><ul>
+<li><p>js 运行在jsCore中</p>
+</li>
+<li><p>视图层的每一页面都是在独立的一个WebView进程中进行渲染</p>
+</li>
+<li><ul>
+<li>index页和weekly页都内置了一个webviewId的内部状态变量，来记录他们各自是在几号webView进程之中进行渲染的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>基于数据绑定和事件机制进行通讯</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><p>-条件成立时组件才渲染生成</p>
+<p><strong>-wx:if</strong></p>
+<p>weekly.js下，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//weekly.js 下</span></span><br><span class="line">isHighlyRecommended:<span class="literal">true</span></span><br><span class="line"><span class="comment">//weekly.wxml 下</span></span><br><span class="line">&lt;text wx:<span class="keyword">if</span>=<span class="string">"&#123;&#123;thisWeekMovie.isHighlyRecommended&#125;&#125;"</span>&gt; 强烈推荐&lt;<span class="regexp">/text&gt;</span></span><br><span class="line"><span class="regexp">&lt;text hidden="&#123;&#123;!thisWeekMovie.isHighlyRecommended&#125;&#125;"&gt;强烈推荐&lt;/</span>text&gt;</span><br><span class="line"><span class="comment">//hidden 总是会渲染生成，只是改变其可见性。</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>当可见性需要频繁切换时，不建议使用条件渲染wx:if,否则会增大渲染开销；</li>
+<li>当某元素的渲染条件用户不会切换时（条件固定），使用条件渲染if；</li>
+<li>hidden的初始化开销大，因为不管条件是否成立都会渲染生成</li>
+</ul>
+<h2 id="列表渲染（循环）"><a href="#列表渲染（循环）" class="headerlink" title="列表渲染（循环）"></a>列表渲染（循环）</h2><p>-重复的渲染生成组件</p>
+<p><strong>-wx:for</strong></p>
+<ul>
+<li><strong>wx:for=”“</strong></li>
+<li>*<em>item *</em>（数组中的每一元素）</li>
+<li><strong>index (下标从0开始）</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//weekly.js下：（注意格式</span></span><br><span class="line">Page(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">    weeklyMovieList:[&#123;</span><br><span class="line">      name:<span class="string">"泰坦尼克号"</span>,</span><br><span class="line">      comment:<span class="string">"失去的才是永恒的"</span>,</span><br><span class="line">      imagePath:<span class="string">"/images/img003.jpg"</span>,</span><br><span class="line">      isHighlyRecommended:<span class="literal">false</span></span><br><span class="line">    &#125;, <span class="comment">//注意逗号不要漏</span></span><br><span class="line">    &#123;</span><br><span class="line">      name:<span class="string">"这个杀手不太冷"</span>,</span><br><span class="line">      comment:<span class="string">"小萝莉和怪蜀黍"</span>,</span><br><span class="line">      imagePath:<span class="string">"/images/img002.jpg"</span>,</span><br><span class="line">      isHighlyRecommended:<span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      name:<span class="string">"教父"</span>,</span><br><span class="line">      comment:<span class="string">"最精彩的剧本，最真实的黑帮电影"</span>,</span><br><span class="line">      imagePath:<span class="string">"/images/img001.jpg"</span>,</span><br><span class="line">      isHighlyRecommended:<span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>wx:for=”“</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">weekly.wxml下</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"movie"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;weeklyMovieList&#125;&#125;"</span>&gt;</span> 注意</span><br><span class="line">    <span class="tag">&lt;<span class="name">image</span> <span class="attr">class</span>=<span class="string">"movie-image"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;item.imagePath&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"movie-details"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span>&gt;</span>第&#123;&#123;index+1&#125;&#125;周:&#123;&#123;item.name&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123;item.comment&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;item.isHighlyRecommended&#125;&#125;"</span> &gt;</span>强烈推荐<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
